@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Team | Agile Lens',
@@ -59,7 +60,7 @@ export default function TeamPage() {
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-black mb-4">Our Team</h1>
         <p className="text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">Architects, technologists, performers, and storytellers — building the future of immersive experiences.</p>
-        <p className="mt-4"><a href="/team/fun" className="text-[var(--color-accent)] hover:underline">See the fun team page</a></p>
+        <p className="mt-4"><Link href="/team/fun" className="text-[var(--color-accent)] hover:underline">See the fun team page</Link></p>
       </div>
 
       {/* Founders */}
