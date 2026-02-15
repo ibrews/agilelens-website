@@ -31,7 +31,7 @@ const team = [
     role: 'Sr. XR Creative Technologist',
     creature: 'Sea Turtle',
     image: '/team/jun.png',
-    bio: "Jun has shipped more Unreal Engine projects than most people have started. Rumor has it the Four Seasons Holodeck runs on his sheer willpower and a very long Blueprint graph.",
+    bio: "Jun has shipped more Unreal Engine projects than most people have started. Rumor has it the Four Seasons Holodeck runs on her sheer willpower and a very long Blueprint graph.",
     color: 'from-green-500/20 to-emerald-500/20',
   },
   {
