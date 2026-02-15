@@ -1,10 +1,7 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Portfolio | Agile Lens',
-  description: 'Explore 50+ immersive XR projects by Agile Lens spanning architecture, entertainment, and marketing.',
-};
+import { useState } from 'react';
+import Link from 'next/link';
 
 type Project = {
   name: string;
@@ -44,6 +41,9 @@ const projects: Project[] = [
 const categories = ['All', 'Architecture', 'Entertainment', 'Marketing', 'R&D'];
 
 export default function PortfolioPage() {
+  const [activeCategory, setActiveCategory] = useState('All');
+  const filtered = activeCategory === 'All' ? projects : projects.filter(p => p.category === activeCategory);
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-24">
       <div className="text-center mb-16">
@@ -53,20 +53,27 @@ export default function PortfolioPage() {
         </p>
       </div>
 
-      {/* Category labels */}
+      {/* Category filters */}
       <div className="flex flex-wrap gap-3 justify-center mb-12">
         {categories.map(c => (
-          <span key={c} className="px-4 py-1.5 text-sm rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)]">
+          <button
+            key={c}
+            onClick={() => setActiveCategory(c)}
+            className={`px-4 py-1.5 text-sm rounded-full border transition-all ${
+              activeCategory === c
+                ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent)]'
+                : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)]/50'
+            }`}
+          >
             {c}
-          </span>
+          </button>
         ))}
       </div>
 
       {/* Projects grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((p, i) => (
+        {filtered.map((p, i) => (
           <div key={i} className="group p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/40 transition-all">
-            {/* Placeholder visual */}
             <div className="w-full h-40 rounded-lg bg-gradient-to-br from-[var(--color-accent)]/5 to-[var(--color-accent-2)]/5 border border-[var(--color-border)] mb-4 flex items-center justify-center text-3xl">
               {p.category === 'Architecture' ? '🏛️' : p.category === 'Entertainment' ? '🎭' : p.category === 'Marketing' ? '📣' : '🔬'}
             </div>

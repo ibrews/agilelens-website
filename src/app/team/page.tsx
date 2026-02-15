@@ -19,7 +19,7 @@ const founders = [
 ];
 
 const creativeTeam = [
-  { name: 'Jun', role: 'Sr. XR Creative Technologist', bio: 'Unreal Engine generalist specializing in XR experiences. Has participated in dozens of UE projects including "A Christmas Carol VR" and "Four Seasons Lake Austin VR".' },
+  { name: 'Yu-Jun Yeh (Jun)', role: 'Sr. XR Creative Technologist', bio: 'Unreal Engine generalist specializing in XR experiences. Has participated in dozens of UE projects including "A Christmas Carol VR" and "Four Seasons Lake Austin VR".' },
   { name: 'Dante Cameron', role: 'XR Technical Artist', bio: 'Uses his background in immersive design to integrate clients with emergent tech. Develops VR interactivity including interfaces for live performers and developer tools.' },
   { name: 'Marshall Nowak', role: 'XR Artist', bio: 'A jack of all trades tackling Blueprint and C++ coding, experience design, prototyping, IT/Networking, 3D modeling, and on-site operations support.' },
   { name: 'Kevin Laibson', role: 'Sr. Experience Director', bio: 'Director of performance and interactive art. Co-founded Magic Futurebox. Faculty at NYU Tisch and Atlantic Acting School.' },
@@ -35,6 +35,7 @@ const operations = [
   { name: 'Bridget Jones', role: 'Administration / HR', bio: 'AB Broadcast Communications from the University of the Philippines. Experience across advertising to AEC.' },
   { name: 'Fay Chang', role: 'Accounting Coordinator', bio: '' },
   { name: 'Arnold Ragins', role: 'Billing Coordinator', bio: '' },
+  { name: 'Henry Keyser', role: 'Director of Operations', bio: 'Background in journalism (MSJ, Northwestern). XR/VR solutions, DevOps, and game development.' },
 ];
 
 function PersonCard({ name, role, bio }: { name: string; role: string; bio: string }) {

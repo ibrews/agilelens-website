@@ -147,7 +147,7 @@ export default function Home() {
       {/* Two Pillars */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">Innovation for</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">Innovation for Two Worlds</h2>
           <p className="text-center text-[var(--color-text-muted)] mb-16 max-w-2xl mx-auto">Two worlds. One studio. We bridge architecture and entertainment with cutting-edge XR.</p>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="group p-8 md:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/50 transition-all">

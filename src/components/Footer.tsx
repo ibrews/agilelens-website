@@ -38,7 +38,7 @@ export default function Footer() {
           {/* Newsletter */}
           <div className="mt-6">
             <h4 className="font-semibold mb-2 text-sm">Newsletter</h4>
-            <form action="https://buttondown.com/api/emails/embed-subscribe/agilelens" method="post" target="popupwindow" className="flex gap-2">
+            <form action="https://buttondown.com/api/emails/embed-subscribe/agilelens" method="post" className="flex gap-2">
               <input type="email" name="email" placeholder="your@email.com" required className="flex-1 px-3 py-2 bg-[var(--color-bg)] border border-[var(--color-border)] rounded text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]" />
               <button type="submit" className="px-4 py-2 bg-[var(--color-accent)] text-black text-sm font-semibold rounded hover:opacity-90 transition">Go</button>
             </form>
