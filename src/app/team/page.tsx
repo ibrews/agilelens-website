@@ -39,7 +39,8 @@ const operations = [
 ];
 
 function PersonCard({ name, role, bio }: { name: string; role: string; bio: string }) {
-  const initials = name.split(' ').map(n => n[0]).join('');
+  const words = name.split(' ').filter(n => !n.startsWith('('));
+  const initials = words.length === 1 ? words[0].slice(0, 2).toUpperCase() : words.map(n => n[0]).join('');
   return (
     <div className="group p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/40 transition-all">
       <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-accent-2)]/20 border border-[var(--color-border)] flex items-center justify-center text-xl font-bold text-[var(--color-accent)] mb-4">
