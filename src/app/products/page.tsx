@@ -17,6 +17,7 @@ const products = [
     features: ['Real-time venue configuration', 'Sightline analysis', 'Construction planning optimization', 'Collaborative review sessions', 'Photorealistic rendering'],
     icon: '📐',
     color: 'from-blue-500/20 to-cyan-500/20',
+    image: '/products/blueprint-immersive.png',
   },
   {
     id: 'holodeck',
@@ -27,6 +28,7 @@ const products = [
     features: ['Wireless multi-user VR', 'Photoreal Unreal Engine rendering', 'Large-scale tracking (80+ ft)', 'Co-located collaboration', 'Turnkey luxury deployment'],
     icon: '🌐',
     color: 'from-emerald-500/20 to-teal-500/20',
+    image: '/products/holodeck-anywhere.png',
   },
   {
     id: 'stagepresence',
@@ -37,6 +39,7 @@ const products = [
     features: ['Standalone VR/MR support', 'Theater-native workflows', 'Rehearsal & performance modes', 'Integrates with existing event tech', 'Multi-performer support'],
     icon: '🎭',
     color: 'from-purple-500/20 to-pink-500/20',
+    image: '/products/stage-presence.png',
   },
   {
     id: 'performr',
@@ -47,6 +50,7 @@ const products = [
     features: ['Multi-source motion capture', 'Real-time MetaHuman animation', 'VR and MR output', 'Playback recording', 'Multi-avatar control'],
     icon: '🎬',
     color: 'from-orange-500/20 to-red-500/20',
+    image: '/products/performr.png',
   },
   {
     id: 'floortour',
@@ -57,6 +61,7 @@ const products = [
     features: ['Self-service setup', 'Real-world scale', 'Quick import workflow', 'Portfolio management', 'VR walkthrough'],
     icon: '🏗️',
     color: 'from-amber-500/20 to-yellow-500/20',
+    image: '/products/floor-tour.png',
   },
   {
     id: 'hyperreal',
@@ -67,6 +72,7 @@ const products = [
     features: ['Raytraced rendering', 'Unreal Engine pipeline', '90 FPS VR optimization', 'Material accuracy', 'Client presentation ready'],
     icon: '🏛️',
     color: 'from-slate-500/20 to-zinc-500/20',
+    image: '/products/hyperreal-estate.png',
   },
 ];
 
@@ -105,8 +111,12 @@ export default function ProductsPage() {
                   Learn More
                 </Link>
               </div>
-              <div className={`aspect-video rounded-2xl bg-gradient-to-br ${p.color} border border-[var(--color-border)] flex items-center justify-center text-6xl ${i % 2 === 1 ? 'md:order-1' : ''}`}>
-                {p.icon}
+              <div className={`aspect-video rounded-2xl bg-gradient-to-br ${p.color} border border-[var(--color-border)] flex items-center justify-center text-6xl overflow-hidden ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+                {p.image ? (
+                  <img src={p.image} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+                ) : (
+                  p.icon
+                )}
               </div>
             </div>
           </div>
