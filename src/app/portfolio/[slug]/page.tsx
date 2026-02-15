@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { projects, getProjectBySlug, getAdjacentProjects } from '@/data/projects';
+import ImageGallery from '@/components/ImageGallery';
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
@@ -92,20 +93,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <div className="grid lg:grid-cols-3 gap-12">
         {/* Left: Main content */}
         <div className="lg:col-span-2 space-y-10">
-          {/* Project image */}
-          <div className="w-full aspect-video rounded-xl overflow-hidden border border-[var(--color-border)]">
-            {project.image ? (
-              <img
-                src={`/agilelens-website${project.image}`}
-                alt={project.name}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full bg-gradient-to-br from-[var(--color-accent)]/10 to-[var(--color-accent-2)]/10 flex items-center justify-center">
-                <span className="text-white/30 text-sm font-medium tracking-wider uppercase">{category}</span>
-              </div>
-            )}
-          </div>
+          {/* Project images */}
+          <ImageGallery images={project.images} projectName={project.name} />
 
           {/* Overview */}
           {project.overview && (

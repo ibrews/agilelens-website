@@ -20,6 +20,7 @@ export type Project = {
   category1: string;
   category2: string;
   image: string;
+  images: string[];
 };
 
 function slugify(name: string): string {
@@ -69,6 +70,7 @@ export const projects: Project[] = [
     category1: 'Architecture',
     category2: '',
     image: '',
+    images: [],
   },
   {
     slug: 'statue-of-liberty-museum',
@@ -92,6 +94,7 @@ export const projects: Project[] = [
     category1: 'Architecture',
     category2: '',
     image: '/portfolio/statue-of-liberty.jpg',
+    images: ['/portfolio/statue-of-liberty/01.jpg', '/portfolio/statue-of-liberty/02.png', '/portfolio/statue-of-liberty/03.png', '/portfolio/statue-of-liberty/04.png', '/portfolio/statue-of-liberty/05.png'],
   },
   {
     slug: 'ed-sullivan-theater',
@@ -115,6 +118,7 @@ export const projects: Project[] = [
     category1: 'Architecture',
     category2: '',
     image: '',
+    images: ['/portfolio/ed-sullivan/01.png'],
   },
   {
     slug: 'the-shed-hudson-yards',
@@ -138,6 +142,7 @@ export const projects: Project[] = [
     category1: 'Architecture',
     category2: '',
     image: '/portfolio/the-shed.png',
+    images: ['/portfolio/the-shed/01.jpg', '/portfolio/the-shed/02.jpg', '/portfolio/the-shed/03.png'],
   },
   {
     slug: 'rice-university-music-and-performing-arts-center',
@@ -161,6 +166,7 @@ export const projects: Project[] = [
     category1: 'Architecture',
     category2: '',
     image: '/portfolio/rice-opera.jpg',
+    images: ['/portfolio/rice-university/01.png', '/portfolio/rice-university/02.jpg', '/portfolio/rice-university/03.jpg'],
   },
   {
     slug: 'intel-project-arena',
@@ -184,6 +190,7 @@ export const projects: Project[] = [
     category1: 'Immersive Marketing',
     category2: '',
     image: '/portfolio/intel-project-arena.png',
+    images: ['/portfolio/intel-project-arena/01.png', '/portfolio/intel-project-arena/02.png', '/portfolio/intel-project-arena/03.png'],
   },
   {
     slug: 'alive-in-plasticland',
@@ -207,6 +214,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '',
+    images: ['/portfolio/alive-in-plasticland/01.png', '/portfolio/alive-in-plasticland/02.jpg', '/portfolio/alive-in-plasticland/03.jpg', '/portfolio/alive-in-plasticland/04.jpg', '/portfolio/alive-in-plasticland/05.jpg', '/portfolio/alive-in-plasticland/06.jpg'],
   },
   {
     slug: 'loveseat',
@@ -230,6 +238,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '',
+    images: ['/portfolio/loveseat/01.jpg', '/portfolio/loveseat/02.jpg', '/portfolio/loveseat/03.jpg'],
   },
   {
     slug: 'that-kind-of-guy',
@@ -253,6 +262,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '',
+    images: [],
   },
   {
     slug: 'ghosted',
@@ -276,6 +286,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '/portfolio/ghosted.png',
+    images: ['/portfolio/ghosted/01.png', '/portfolio/ghosted/02.png'],
   },
   {
     slug: 'jettison-on-board-xr',
@@ -299,6 +310,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '/portfolio/onboard.jpg',
+    images: ['/portfolio/jettison-onboard/01.jpg'],
   },
   {
     slug: 'a-christmas-carol-vr',
@@ -322,6 +334,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '/portfolio/xmas-carol.jpg',
+    images: ['/portfolio/christmas-carol/01.jpg', '/portfolio/christmas-carol/02.jpg'],
   },
   {
     slug: 'the-orchard',
@@ -345,6 +358,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '/portfolio/the-orchard.png',
+    images: ['/portfolio/the-orchard/01.png', '/portfolio/the-orchard/02.jpg'],
   },
   {
     slug: 'song-of-the-ambassadors',
@@ -368,6 +382,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '/portfolio/song-of-ambassadors.png',
+    images: ['/portfolio/song-of-ambassadors/01.png'],
   },
   {
     slug: 'waldorf-astoria-miami',
@@ -391,6 +406,7 @@ export const projects: Project[] = [
     category1: 'Immersive Marketing',
     category2: '',
     image: '',
+    images: [],
   },
   {
     slug: 'four-seasons-lake-austin',
@@ -403,7 +419,7 @@ export const projects: Project[] = [
     press: 'https://www.papercitymag.com/real-estate/four-seasons-private-residences-lake-austin-creates-2-million-holodeck-real-estate-amenities/#465572',
     clients: '',
     overview: 'This 5,300 square foot space allows guests to virtually experience what $300 million worth of amenities and shared facilities will feel like at Four Seasons Private Residences. Guests can walk freely and wirelessly around an 82 x 65-foot space and feel like they are walking around a finished residence, the lake clubhouse, indoor sports club, private restaurant, and theater. The experience ends with guests walking into a virtual 96-seat theater and then sitting in four real theater seats.',
-    video: '',
+    video: 'https://youtu.be/6la2yieiCG0',
     imageCarousel: '',
     description: 'Agile Lens worked in the development and production phases of this project; we optimized the levels that Pureblink built from DBox\'s renders, and assembled the software experience to navigate between those levels. We also led the setup and implementation of the holodeck itself, working with the client to develop the entire guest experience from entering the holodeck through the virtual tour. We staffed and managed the first 6 months of operation and managed the operations handoff to a local team.',
     papers: '',
@@ -414,6 +430,7 @@ export const projects: Project[] = [
     category1: 'Real Estate',
     category2: '',
     image: '/portfolio/four-seasons-holodeck.jpg',
+    images: ['/portfolio/four-seasons/01.jpg'],
   },
   {
     slug: 'dell-cybersecurity-vr-challenge',
@@ -437,6 +454,7 @@ export const projects: Project[] = [
     category1: 'Immersive Marketing',
     category2: '',
     image: '/portfolio/dell-cybersecurity.png',
+    images: ['/portfolio/dell-cybersecurity/01.png'],
   },
   {
     slug: 'vodafone',
@@ -460,6 +478,7 @@ export const projects: Project[] = [
     category1: 'Immersive Marketing',
     category2: '',
     image: '',
+    images: ['/portfolio/vodafone/01.png'],
   },
   {
     slug: 'la-pasion-xr',
@@ -483,6 +502,7 @@ export const projects: Project[] = [
     category1: 'Entertainment',
     category2: '',
     image: '/portfolio/la-pasion-xr.png',
+    images: ['/portfolio/la-pasion-xr/01.png'],
   },
   {
     slug: 'body-of-mine',
@@ -506,6 +526,7 @@ export const projects: Project[] = [
     category1: 'Social Impact',
     category2: 'Entertainment',
     image: '/portfolio/body-of-mine.jpg',
+    images: ['/portfolio/body-of-mine/01.jpg'],
   },
 ];
 
