@@ -21,7 +21,7 @@ html {
 body {
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 ::selection {
@@ -51,13 +51,13 @@ body {
 }
 
 [data-theme="immersive"] {
-  --color-bg: #000000;
-  --color-surface: #0a0a0a;
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
   --color-border: #1a1a1a;
   --color-text: #ffffff;
-  --color-text-muted: #666;
-  --color-accent: #00d4ff;
-  --color-accent-2: #00ff88;
+  --color-text-muted: #888;
+  --color-accent: #e94d8a;
+  --color-accent-2: #c026d3;
 }
 
 @keyframes fadeIn {

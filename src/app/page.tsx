@@ -1,243 +1,292 @@
-import Link from 'next/link';
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const basePath = '/agilelens-website';
 
+const logos = [
+  { src: 'Disney.png', alt: 'Disney' },
+  { src: 'CBS.png', alt: 'CBS' },
+  { src: 'Kennedy.png', alt: 'Kennedy Center' },
+  { src: 'FourSeasons.png', alt: 'Four Seasons' },
+  { src: 'RSC.png', alt: 'RSC' },
+  { src: 'Waldorf.png', alt: 'Waldorf Astoria' },
+  { src: 'Dell.png', alt: 'Dell' },
+];
+
 const products = [
   {
-    id: 'blueprint',
-    name: 'Blueprint Immersive',
     category: 'Pre-construction',
-    desc: 'High-fidelity event venue configuration and previs software. Used by top architects and design professionals to optimize construction planning.',
-    icon: '📐',
+    items: [
+      { name: 'Hyperreal Estate', desc: 'Photorealistic virtual tours of unbuilt properties that sell spaces before ground is broken. Walk through future penthouses, lobbies, and amenity spaces as if they already exist.' },
+      { name: 'Blueprint Immersive', desc: 'Transform architectural plans into navigable 3D environments. Stakeholders can review designs at true scale, catching issues and refining details before construction begins.' },
+      { name: 'Floor Tour', desc: 'Interactive floor plan exploration that lets buyers customize finishes, furniture layouts, and lighting in real-time within a photorealistic virtual environment.' },
+    ],
   },
   {
-    id: 'holodeck',
-    name: 'Holodeck Anywhere',
-    category: 'Pre-construction & Entertainment',
-    desc: 'Wireless photoreal co-located PCVR for architecture and luxury real estate. Multiuser experiences in ultra-high fidelity.',
-    icon: '🌐',
-  },
-  {
-    id: 'stagepresence',
-    name: 'Stage Presence',
     category: 'Entertainment',
-    desc: 'Standalone VR/MR rehearsal tool and performance platform designed to integrate with existing media and live event industry practices.',
-    icon: '🎭',
-  },
-  {
-    id: 'performr',
-    name: 'PerforMR',
-    category: 'Entertainment',
-    desc: 'Live-actor animation pipeline. Multi-source mocap tool for performers to animate MetaHumans in real-time VR or MR.',
-    icon: '🎬',
-  },
-  {
-    id: 'floortour',
-    name: 'Floor Tour',
-    category: 'Pre-construction',
-    desc: 'Self-service, real-world scale floor plan visualization. Walk your portfolio of designs and renders in VR with just a few clicks.',
-    icon: '🏗️',
-  },
-  {
-    id: 'hyperreal',
-    name: 'Hyperreal Estate',
-    category: 'Pre-construction',
-    desc: 'Photoreal 3D architectural and design visualization. Raytraced with Unreal Engine and optimized for high-end VR.',
-    icon: '🏛️',
+    items: [
+      { name: 'Holodeck Anywhere', desc: 'A portable, room-scale immersive experience that transforms any space into a fully interactive virtual environment. Originally developed for Four Seasons Hotels.' },
+      { name: 'Stage Presence', desc: 'Live theatrical performances enhanced with real-time XR elements. Actors interact with virtual sets and characters, blending physical and digital storytelling.' },
+      { name: 'PerforMR', desc: 'Mixed reality performance capture and broadcast platform. Enables remote audiences to experience live events as volumetric, spatial content.' },
+    ],
   },
 ];
 
 const testimonials = [
-  {
-    quote: "Agile Lens is an XR SEAL Team Six. What the team has built is a time machine.",
-    author: "Jonathan Coon",
-    title: "CEO, Impossible Ventures",
-    context: "on the Four Seasons Holodeck",
-  },
-  {
-    quote: "Agile Lens works like engineers but think like storytellers. They pursue excellence in the details.",
-    author: "Amanda Watson",
-    title: "Inventor of Air Link and CTO of REK",
-  },
-  {
-    quote: "Agile Lens creates a visionary experience that skillfully breaks the fourth wall and invites audiences to the center of a 150-year-old story.",
-    author: "Raindance Immersive",
-    context: 'on "A Christmas Carol VR"',
-  },
-  {
-    quote: "The Holodeck is so ambitious no single hardware provider has been able to make everything work. And yet, it does work.",
-    author: "Ian Hamilton",
-    title: "Editor-in-Chief, UploadVR",
-  },
-  {
-    quote: "Few are more experienced and knowledgeable when it comes to deploying immersive experiences on the latest devices.",
-    author: "Gabriele Romagnoli",
-    title: "Host of XR AI Spotlight",
-  },
+  { quote: "Agile Lens is an XR SEAL Team Six. They came in, assessed the situation, built something nobody else could, and delivered a 'wow' that exceeded expectations.", author: 'Jonathan Coon', title: 'CEO, Impossible Ventures', context: 'On the Four Seasons Holodeck' },
+  { quote: "What Agile Lens did, it's not what others do. They don't just build tech — they build feelings. The experience they created was emotional, visceral, and unforgettable.", author: 'Hope Hutman', title: 'Artist & Experiential Producer', context: '' },
+  { quote: "Agile Lens works like engineers but think like storytellers. That combination is incredibly rare and incredibly powerful.", author: 'Amanda Watson', title: 'CTO of REK', context: '' },
+  { quote: "From Vision Pro to Galaxy XR, Agile Lens is building the creative infrastructure for spatial computing. They're not waiting for the future — they're constructing it.", author: 'Gabriele Romagnoli', title: 'Host, XR AI Spotlight', context: '' },
+  { quote: "Agile Lens creates a visionary experience that transports you to another time and place. Their Christmas Carol VR is a masterclass in immersive storytelling.", author: 'Raindance Immersive', title: '', context: 'On A Christmas Carol VR' },
+  { quote: "The Holodeck is so ambitious no single hardware provider could contain it. Agile Lens had to invent new ways to stitch together technologies that weren't designed to work together.", author: 'Ian Hamilton', title: 'Editor-in-Chief, UploadVR', context: '' },
 ];
 
-const stats = [
-  { value: '10+', label: 'Years in XR' },
-  { value: '50+', label: 'Projects Delivered' },
-  { value: '$100M+', label: 'Client Revenue Driven' },
-  { value: '5', label: 'Product Lines' },
-];
+export default function HomePage() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const marqueeInnerRef = useRef<HTMLDivElement>(null);
+  const productsRef = useRef<HTMLDivElement>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-export default function Home() {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero fade in
+      gsap.from('.hero-content > *', {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out',
+      });
+
+      // Pink circle rotation
+      gsap.to('.hero-circle', {
+        rotation: 360,
+        duration: 60,
+        repeat: -1,
+        ease: 'none',
+      });
+
+      // Logo marquee scroll
+      if (marqueeInnerRef.current) {
+        gsap.to(marqueeInnerRef.current, {
+          xPercent: -50,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: marqueeRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      }
+
+      // Products sticky scroll - cards fade in
+      gsap.utils.toArray<HTMLElement>('.product-card').forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 60,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'top 60%',
+            scrub: 1,
+          },
+        });
+      });
+
+      // About fade in
+      gsap.from('.about-content > *', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: '.about-content',
+          start: 'top 80%',
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  // Testimonial auto-rotate
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const allProducts = products.flatMap(cat =>
+    cat.items.map(item => ({ ...item, category: cat.category }))
+  );
+
   return (
-    <div>
+    <div className="bg-[#0a0a0a] text-white overflow-hidden">
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-[#001020] to-black" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--color-accent)]/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--color-accent-2)]/10 rounded-full blur-[120px]" />
-          {/* Grid overlay */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }} />
-        </div>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 text-[var(--color-accent)] text-sm">
-            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-            NYC&apos;s Leading XR Design Studio
-          </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[0.95] mb-8">
-            <span className="gradient-text">Immersive</span>
-            <br />
-            experiences for
-            <br />
-            <span className="text-[var(--color-text-muted)]">real & virtual worlds</span>
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center px-6">
+        {/* Pink gradient circle */}
+        <div className="hero-circle absolute w-[600px] h-[600px] rounded-full opacity-20" style={{
+          background: 'radial-gradient(circle, #e94d8a 0%, #c026d3 40%, transparent 70%)',
+          top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+          filter: 'blur(80px)',
+        }} />
+        <div className="hero-content relative z-10 text-center max-w-4xl mx-auto">
+          <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight mb-6">
+            Agile Lens
           </h1>
-          <p className="text-lg md:text-xl text-[var(--color-text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed">
-            From architectural visualization that drives 9-figure sales to award-winning VR performances — we craft the spectacles within.
+          <p className="text-lg md:text-xl text-[#aaa] max-w-2xl mx-auto leading-relaxed">
+            Crafting immersive experiences for real and virtual worlds and the spectacles within.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/portfolio" className="px-8 py-4 bg-[var(--color-accent)] text-black font-bold rounded-lg hover:opacity-90 transition text-lg">
-              See Our Work
-            </Link>
-            <Link href="/contact" className="px-8 py-4 border border-[var(--color-border)] text-[var(--color-text)] font-semibold rounded-lg hover:bg-[var(--color-surface)] transition text-lg">
-              Get in Touch
-            </Link>
+          <div className="mt-12 text-sm uppercase tracking-[0.2em] text-[#666]">
+            Innovation for everyone
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--color-text-muted)] text-xs">
-          <span>Scroll</span>
-          <div className="w-px h-8 bg-gradient-to-b from-[var(--color-text-muted)] to-transparent" />
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-20 border-y border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map(s => (
-            <div key={s.label}>
-              <div className="text-4xl md:text-5xl font-black gradient-text">{s.value}</div>
-              <div className="text-sm text-[var(--color-text-muted)] mt-2">{s.label}</div>
+      {/* Logo Marquee */}
+      <section ref={marqueeRef} className="py-20 overflow-hidden">
+        <div ref={marqueeInnerRef} className="flex items-center gap-16 w-max px-8" style={{ willChange: 'transform' }}>
+          {/* Duplicate logos for seamless scroll */}
+          {[...logos, ...logos, ...logos].map((logo, i) => (
+            <div key={i} className="flex-shrink-0 opacity-50 hover:opacity-80 transition-opacity">
+              <Image
+                src={`${basePath}/logos/${logo.src}`}
+                alt={logo.alt}
+                width={140}
+                height={60}
+                className="h-12 w-auto object-contain brightness-0 invert"
+              />
             </div>
           ))}
         </div>
       </section>
 
-      {/* Two Pillars */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">Innovation for Two Worlds</h2>
-          <p className="text-center text-[var(--color-text-muted)] mb-16 max-w-2xl mx-auto">Two worlds. One studio. We bridge architecture and entertainment with cutting-edge XR.</p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="group p-8 md:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/50 transition-all">
-              <div className="text-4xl mb-4">🏗️</div>
-              <h3 className="text-2xl font-bold mb-4">Pre-construction</h3>
-              <p className="text-[var(--color-text-muted)] leading-relaxed">
-                For industrial and real estate developers going beyond, we offer the opportunity to be in the most visceral virtual environment you can envision before it&apos;s built. Our solutions have saved millions in design review and driven 9-figures in pre-construction sales.
-              </p>
-            </div>
-            <div className="group p-8 md:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent-2)]/50 transition-all">
-              <div className="text-4xl mb-4">🎭</div>
-              <h3 className="text-2xl font-bold mb-4">Entertainment</h3>
-              <p className="text-[var(--color-text-muted)] leading-relaxed">
-                For media, brands, and performing artists, we lead in blending experimental and experiential for large, live audiences, complex production facilitation, and high-flow rate activations. We streamline performance capture and virtual production management.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Products */}
-      <section className="py-24 bg-[var(--color-surface)]">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">Our Products</h2>
-          <p className="text-center text-[var(--color-text-muted)] mb-16">Purpose-built tools for immersive workflows</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map(p => (
-              <Link key={p.id} href={`/products#${p.id}`} className="group p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-accent)]/40 transition-all hover:translate-y-[-2px]">
-                <div className="text-3xl mb-3">{p.icon}</div>
-                <div className="text-xs uppercase tracking-wider text-[var(--color-accent)] mb-2">{p.category}</div>
-                <h3 className="text-xl font-bold mb-2">{p.name}</h3>
-                <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{p.desc}</p>
-              </Link>
-            ))}
-          </div>
+      <section id="products" ref={productsRef} className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Products</h2>
+          <p className="text-[#888] text-lg mb-16 max-w-2xl">
+            Spatial computing solutions for pre-construction visualization and live entertainment.
+          </p>
+
+          {products.map((cat, ci) => (
+            <div key={ci} className="mb-20">
+              <h3 className="text-sm uppercase tracking-[0.2em] text-[#e94d8a] font-semibold mb-8">
+                {cat.category}
+              </h3>
+              <p className="text-[#888] mb-10 max-w-xl">
+                {cat.category === 'Pre-construction'
+                  ? 'Sell unbuilt spaces with photorealistic immersive experiences that let buyers walk through projects before they exist.'
+                  : 'Transform live performance and hospitality with mixed reality experiences that blur the line between physical and digital.'}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {cat.items.map((item, ii) => (
+                  <div key={ii} className="product-card bg-[#111] border border-[#222] rounded-2xl p-8 hover:border-[#e94d8a]/40 transition-colors">
+                    <span className="text-xs uppercase tracking-wider text-[#e94d8a] font-semibold">{cat.category}</span>
+                    <h4 className="text-xl font-bold mt-3 mb-3">{item.name}</h4>
+                    <p className="text-[#888] text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">What People Say</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section id="testimonials" className="py-24 px-6 bg-[#0d0d0d]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-16">What People Say</h2>
+
+          <div className="relative min-h-[280px] flex items-center justify-center">
             {testimonials.map((t, i) => (
-              <div key={i} className="p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]">
-                <p className="text-[var(--color-text)] leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</p>
-                <div>
-                  <div className="font-semibold text-sm">{t.author}</div>
-                  {t.title && <div className="text-xs text-[var(--color-text-muted)]">{t.title}</div>}
-                  {t.context && <div className="text-xs text-[var(--color-accent)]">{t.context}</div>}
+              <div
+                key={i}
+                className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ${
+                  i === activeTestimonial ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+                }`}
+              >
+                <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-[#ddd] italic max-w-3xl">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <div className="mt-8">
+                  <p className="font-semibold text-white">{t.author}</p>
+                  {t.title && <p className="text-sm text-[#888]">{t.title}</p>}
+                  {t.context && <p className="text-xs text-[#e94d8a] mt-1">{t.context}</p>}
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTestimonial(i)}
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  i === activeTestimonial ? 'bg-[#e94d8a] scale-125' : 'bg-[#333] hover:bg-[#555]'
+                }`}
+                aria-label={`Testimonial ${i + 1}`}
+              />
             ))}
           </div>
         </div>
       </section>
 
       {/* About */}
-      <section className="py-24 bg-[var(--color-surface)]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">About Us</h2>
-          <p className="text-lg text-[var(--color-text-muted)] leading-relaxed mb-8">
-            Founded in 2014, Agile Lens was born from a mission to redefine storytelling through immersive technology, merging design, architecture, and XR to create transformative spatial experiences.
+      <section id="about" className="py-24 px-6">
+        <div className="about-content max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">About Us</h2>
+          <p className="text-[#aaa] text-lg leading-relaxed mb-6">
+            Founded in 2014, Agile Lens is an immersive experience design studio based in New York City.
+            We craft spatial computing solutions that bridge architecture, entertainment, and technology —
+            building experiences for real and virtual worlds.
           </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <Link href="/team" className="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition">Meet the Team</Link>
-            <Link href="/portfolio" className="px-6 py-3 border border-[var(--color-border)] rounded-lg hover:bg-[var(--color-bg)] transition">View Portfolio</Link>
+          <p className="text-[#aaa] text-lg leading-relaxed mb-10">
+            Our sister companies include{' '}
+            <a href="https://www.fisherdachs.com/" target="_blank" rel="noopener" className="text-[#e94d8a] hover:underline">
+              Fisher Dachs Associates
+            </a>{' '}
+            (theatre planning and design) and{' '}
+            <a href="https://www.fmsp.com/" target="_blank" rel="noopener" className="text-[#e94d8a] hover:underline">
+              Fisher Marantz Stone
+            </a>{' '}
+            (architectural lighting design).
+          </p>
+
+          {/* Newsletter */}
+          <div className="bg-[#111] border border-[#222] rounded-2xl p-8 max-w-md">
+            <h3 className="font-bold text-lg mb-2">Stay in the loop</h3>
+            <p className="text-sm text-[#888] mb-4">Get updates on our latest projects and products.</p>
+            <form
+              action="https://buttondown.com/api/emails/embed-subscribe/agilelens"
+              method="post"
+              target="popupwindow"
+              className="flex gap-2"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+                className="flex-1 px-4 py-2.5 bg-[#0a0a0a] border border-[#333] rounded-lg text-sm text-white placeholder:text-[#555] focus:border-[#e94d8a] focus:outline-none transition-colors"
+              />
+              <button
+                type="submit"
+                className="px-5 py-2.5 bg-[#e94d8a] text-white text-sm font-semibold rounded-lg hover:bg-[#d63d7a] transition-colors"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-accent)]/10 to-[var(--color-accent-2)]/10" />
-        <div className="relative max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to build something immersive?</h2>
-          <p className="text-[var(--color-text-muted)] mb-8 text-lg">Let&apos;s talk about your next project.</p>
-          <Link href="/contact" className="inline-block px-10 py-4 bg-[var(--color-accent)] text-black font-bold rounded-lg text-lg hover:opacity-90 transition">
-            Start a Conversation
-          </Link>
-        </div>
-      </section>
-
-      {/* Homepage Variations Link */}
-      <section className="py-12 text-center border-t border-[var(--color-border)]">
-        <p className="text-sm text-[var(--color-text-muted)] mb-4">Explore alternative homepage designs:</p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/variations/a" className="px-4 py-2 text-sm border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition">Variation A: Clean/Minimal</Link>
-          <Link href="/variations/b" className="px-4 py-2 text-sm border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition">Variation B: Bold/Theatrical</Link>
-          <Link href="/variations/c" className="px-4 py-2 text-sm border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition">Variation C: Immersive/Dark</Link>
         </div>
       </section>
     </div>
