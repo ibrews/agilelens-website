@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const basePath = '/agilelens-website';
+
 export const metadata: Metadata = {
   title: 'The REAL Team Page | Agile Lens',
   description: '100% accurate bios. We definitely asked permission.',
@@ -130,7 +132,7 @@ export default function FunTeamPage() {
           <div key={member.name} className={`group p-6 rounded-2xl border border-[var(--color-border)] bg-gradient-to-br ${member.color} hover:scale-[1.02] transition-all duration-300`}>
             <div className="w-32 h-32 mx-auto mb-4 relative rounded-full overflow-hidden border-2 border-[var(--color-accent)]/30">
               <Image
-                src={member.image}
+                src={`${basePath}${member.image}`}
                 alt={`${member.name} as a ${member.creature}`}
                 fill
                 className="object-cover"
