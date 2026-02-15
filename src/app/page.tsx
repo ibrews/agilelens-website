@@ -213,7 +213,7 @@ export default function Home() {
             Founded in 2014, Agile Lens was born from a mission to redefine storytelling through immersive technology, merging design, architecture, and XR to create transformative spatial experiences.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link href="/team" className="px-6 py-3 bg-[var(--color-accent)] text-black font-semibold rounded-lg hover:opacity-90 transition">Meet the Team</Link>
+            <Link href="/team" className="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition">Meet the Team</Link>
             <Link href="/portfolio" className="px-6 py-3 border border-[var(--color-border)] rounded-lg hover:bg-[var(--color-bg)] transition">View Portfolio</Link>
           </div>
         </div>
