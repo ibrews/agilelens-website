@@ -79,7 +79,7 @@ export default function PortfolioPage() {
               {p.image ? (
                 <img src={`/agilelens-website${p.image}`} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
               ) : (
-                p.category === 'Architecture' ? '🏛️' : p.category === 'Entertainment' ? '🎭' : p.category === 'Marketing' ? '📣' : '🔬'
+                <span className="text-white/40 text-sm font-medium tracking-wider uppercase">{p.category}</span>
               )}
             </div>
             <div className="flex items-center gap-2 mb-2">
@@ -89,7 +89,7 @@ export default function PortfolioPage() {
             <h3 className="text-lg font-bold mb-2">{p.name}</h3>
             {p.client && <div className="text-xs text-[var(--color-text-muted)] mb-2">Client: {p.client}</div>}
             <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-3">{p.desc}</p>
-            {p.awards && <div className="text-xs text-yellow-400 mb-2">🏆 {p.awards}</div>}
+            {p.awards && <div className="text-xs text-yellow-400 mb-2">{p.awards}</div>}
             {p.tech && <div className="text-xs text-[var(--color-text-muted)]">Tech: {p.tech}</div>}
             {p.video && (
               <a href={p.video} target="_blank" rel="noopener" className="inline-block mt-3 text-sm text-[var(--color-accent)] hover:underline">Watch Video →</a>

@@ -15,7 +15,7 @@ const products = [
     category: 'For Architects & Designers',
     desc: 'High-fidelity event venue configuration and previs software. Used by top architects and design professionals to optimize construction planning, evaluate sightlines, and iterate on spatial designs in real-time VR.',
     features: ['Real-time venue configuration', 'Sightline analysis', 'Construction planning optimization', 'Collaborative review sessions', 'Photorealistic rendering'],
-    icon: '📐',
+    icon: '',
     color: 'from-blue-500/20 to-cyan-500/20',
     image: '/products/blueprint-immersive.png',
   },
@@ -26,7 +26,7 @@ const products = [
     category: 'For Architecture & Luxury Real Estate',
     desc: 'Wireless photoreal co-located PCVR that lets multiple users walk freely through virtual spaces together. Our Four Seasons deployment drove 9-figures in pre-construction sales across an 82×65-foot holodeck space.',
     features: ['Wireless multi-user VR', 'Photoreal Unreal Engine rendering', 'Large-scale tracking (80+ ft)', 'Co-located collaboration', 'Turnkey luxury deployment'],
-    icon: '🌐',
+    icon: '',
     color: 'from-emerald-500/20 to-teal-500/20',
     image: '/products/holodeck-anywhere.png',
   },
@@ -37,7 +37,7 @@ const products = [
     category: 'For Theater & Live Events',
     desc: 'Standalone VR/MR rehearsal tool and performance platform designed to integrate with existing media and live event industry practices. From blocking to full performances, Stage Presence bridges physical and virtual stages.',
     features: ['Standalone VR/MR support', 'Theater-native workflows', 'Rehearsal & performance modes', 'Integrates with existing event tech', 'Multi-performer support'],
-    icon: '🎭',
+    icon: '',
     color: 'from-purple-500/20 to-pink-500/20',
     image: '/products/stage-presence.png',
   },
@@ -48,7 +48,7 @@ const products = [
     category: 'For Performers & Creators',
     desc: 'Live-actor animation pipeline. A multi-source mocap tool for performers to animate one or many MetaHumans, real-time or saved for playback, in Virtual Reality or Mixed Reality.',
     features: ['Multi-source motion capture', 'Real-time MetaHuman animation', 'VR and MR output', 'Playback recording', 'Multi-avatar control'],
-    icon: '🎬',
+    icon: '',
     color: 'from-orange-500/20 to-red-500/20',
     image: '/products/performr.png',
   },
@@ -59,7 +59,7 @@ const products = [
     category: 'For Real Estate & Design',
     desc: 'Self-service, real-world scale floor plan visualization software. Walk your portfolio of designs and renders in VR with just a few clicks.',
     features: ['Self-service setup', 'Real-world scale', 'Quick import workflow', 'Portfolio management', 'VR walkthrough'],
-    icon: '🏗️',
+    icon: '',
     color: 'from-amber-500/20 to-yellow-500/20',
     image: '/products/floor-tour.png',
   },
@@ -70,7 +70,7 @@ const products = [
     category: 'For Developers & Architects',
     desc: 'Photoreal 3D architectural and design visualization. Raytraced with Unreal Engine and optimized for high-end VR at 90 FPS.',
     features: ['Raytraced rendering', 'Unreal Engine pipeline', '90 FPS VR optimization', 'Material accuracy', 'Client presentation ready'],
-    icon: '🏛️',
+    icon: '',
     color: 'from-slate-500/20 to-zinc-500/20',
     image: '/products/hyperreal-estate.png',
   },
@@ -115,7 +115,7 @@ export default function ProductsPage() {
                 {p.image ? (
                   <img src={`/agilelens-website${p.image}`} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
                 ) : (
-                  p.icon
+                  <span className="text-white/30 text-sm font-medium tracking-wider uppercase">{p.name}</span>
                 )}
               </div>
             </div>

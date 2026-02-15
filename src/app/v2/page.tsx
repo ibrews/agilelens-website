@@ -8,42 +8,42 @@ const products = [
     name: 'Blueprint Immersive',
     category: 'Pre-construction',
     desc: 'High-fidelity event venue configuration and previs software. Used by top architects and design professionals to optimize construction planning.',
-    icon: '📐',
+    icon: '',
   },
   {
     id: 'holodeck',
     name: 'Holodeck Anywhere',
     category: 'Pre-construction & Entertainment',
     desc: 'Wireless photoreal co-located PCVR for architecture and luxury real estate. Multiuser experiences in ultra-high fidelity.',
-    icon: '🌐',
+    icon: '',
   },
   {
     id: 'stagepresence',
     name: 'Stage Presence',
     category: 'Entertainment',
     desc: 'Standalone VR/MR rehearsal tool and performance platform designed to integrate with existing media and live event industry practices.',
-    icon: '🎭',
+    icon: '',
   },
   {
     id: 'performr',
     name: 'PerforMR',
     category: 'Entertainment',
     desc: 'Live-actor animation pipeline. Multi-source mocap tool for performers to animate MetaHumans in real-time VR or MR.',
-    icon: '🎬',
+    icon: '',
   },
   {
     id: 'floortour',
     name: 'Floor Tour',
     category: 'Pre-construction',
     desc: 'Self-service, real-world scale floor plan visualization. Walk your portfolio of designs and renders in VR with just a few clicks.',
-    icon: '🏗️',
+    icon: '',
   },
   {
     id: 'hyperreal',
     name: 'Hyperreal Estate',
     category: 'Pre-construction',
     desc: 'Photoreal 3D architectural and design visualization. Raytraced with Unreal Engine and optimized for high-end VR.',
-    icon: '🏛️',
+    icon: '',
   },
 ];
 
@@ -151,14 +151,14 @@ export default function Home() {
           <p className="text-center text-[var(--color-text-muted)] mb-16 max-w-2xl mx-auto">Two worlds. One studio. We bridge architecture and entertainment with cutting-edge XR.</p>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="group p-8 md:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/50 transition-all">
-              <div className="text-4xl mb-4">🏗️</div>
+              <div className="text-sm uppercase tracking-wider font-semibold text-[var(--color-accent)] mb-4">01</div>
               <h3 className="text-2xl font-bold mb-4">Pre-construction</h3>
               <p className="text-[var(--color-text-muted)] leading-relaxed">
                 For industrial and real estate developers going beyond, we offer the opportunity to be in the most visceral virtual environment you can envision before it&apos;s built. Our solutions have saved millions in design review and driven 9-figures in pre-construction sales.
               </p>
             </div>
             <div className="group p-8 md:p-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent-2)]/50 transition-all">
-              <div className="text-4xl mb-4">🎭</div>
+              <div className="text-sm uppercase tracking-wider font-semibold text-[var(--color-accent-2)] mb-4">02</div>
               <h3 className="text-2xl font-bold mb-4">Entertainment</h3>
               <p className="text-[var(--color-text-muted)] leading-relaxed">
                 For media, brands, and performing artists, we lead in blending experimental and experiential for large, live audiences, complex production facilitation, and high-flow rate activations. We streamline performance capture and virtual production management.
@@ -176,7 +176,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map(p => (
               <Link key={p.id} href={`/products#${p.id}`} className="group p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg)] hover:border-[var(--color-accent)]/40 transition-all hover:translate-y-[-2px]">
-                <div className="text-3xl mb-3">{p.icon}</div>
+                <div className="text-xs uppercase tracking-wider text-[var(--color-accent)] font-semibold mb-3">{p.category}</div>
                 <div className="text-xs uppercase tracking-wider text-[var(--color-accent)] mb-2">{p.category}</div>
                 <h3 className="text-xl font-bold mb-2">{p.name}</h3>
                 <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">{p.desc}</p>

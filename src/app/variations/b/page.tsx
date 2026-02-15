@@ -25,7 +25,7 @@ export default function VariationB() {
         <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-red-900/30 to-transparent" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="mb-8 text-orange-400 text-sm uppercase tracking-[0.5em]">✦ Act I ✦</div>
+          <div className="mb-8 text-orange-400 text-sm uppercase tracking-[0.5em]">Act I</div>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-8">
             <span className="text-white">The</span>
             <br />
@@ -41,7 +41,7 @@ export default function VariationB() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/portfolio" className="px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-lg hover:scale-105 transition-transform shadow-lg shadow-orange-500/25">
-              🎭 Enter the Portfolio
+              Enter the Portfolio
             </Link>
             <Link href="/contact" className="px-10 py-5 border-2 border-purple-400/40 text-purple-200 font-semibold rounded-full text-lg hover:bg-purple-500/10 transition">
               Request a Demo
@@ -58,13 +58,13 @@ export default function VariationB() {
           
           <div className="space-y-8">
             {[
-              { act: 'I', name: 'Blueprint Immersive', desc: 'Design spaces before they exist. High-fidelity venue previz for architects.', emoji: '📐' },
-              { act: 'II', name: 'Holodeck Anywhere', desc: 'Walk through $300M of real estate that hasn\'t been built yet. Wirelessly.', emoji: '🌐' },
-              { act: 'III', name: 'Stage Presence', desc: 'Rehearse on virtual stages. Perform across realities. Take a bow.', emoji: '🎭' },
-              { act: 'IV', name: 'PerforMR', desc: 'Become your avatar. Motion capture meets live performance.', emoji: '🎬' },
+              { act: 'I', name: 'Blueprint Immersive', desc: 'Design spaces before they exist. High-fidelity venue previz for architects.' },
+              { act: 'II', name: 'Holodeck Anywhere', desc: 'Walk through $300M of real estate that hasn\'t been built yet. Wirelessly.' },
+              { act: 'III', name: 'Stage Presence', desc: 'Rehearse on virtual stages. Perform across realities. Take a bow.' },
+              { act: 'IV', name: 'PerforMR', desc: 'Become your avatar. Motion capture meets live performance.' },
             ].map(p => (
               <div key={p.act} className="group flex items-center gap-8 p-8 rounded-2xl border border-purple-500/20 hover:border-orange-500/40 bg-purple-900/10 hover:bg-purple-900/20 transition-all">
-                <div className="text-5xl">{p.emoji}</div>
+                <div className="text-xs text-orange-400 uppercase tracking-wider font-semibold">Act {p.act}</div>
                 <div>
                   <span className="text-xs text-orange-400 uppercase tracking-wider">Act {p.act}</span>
                   <h3 className="text-2xl md:text-3xl font-bold text-white">{p.name}</h3>
