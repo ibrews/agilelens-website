@@ -33,19 +33,16 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Map placeholder */}
-          <div className="mt-8 aspect-video rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-text-muted)]">
-            <div className="text-center">
-              <div className="text-4xl mb-2">📍</div>
-              <p className="text-sm">Flatiron District, NYC</p>
-            </div>
+          {/* Map */}
+          <div className="mt-8 aspect-video rounded-xl overflow-hidden">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9537095!2d-73.993861!3d40.739361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a3f711cf75%3A0x999f4f79d0be2145!2s22%20W%2019th%20St%2C%20New%20York%2C%20NY%2010011!5e0!3m2!1sen!2sus!4v1" width="100%" height="100%" style={{border:0}} allowFullScreen loading="lazy"></iframe>
           </div>
         </div>
 
         {/* Contact Form - using Formspree free tier */}
         <div>
           <h2 className="text-2xl font-bold mb-6">Leave us a message</h2>
-          <form action="https://formspree.io/f/xpznqwkd" method="POST" className="space-y-5">
+          <form action="mailto:info@agilelens.com" method="POST" encType="text/plain" className="space-y-5">
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
               <input type="text" id="name" name="name" required className="w-full px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent)] transition" placeholder="Your name" />
@@ -71,6 +68,7 @@ export default function ContactPage() {
             <button type="submit" className="w-full py-4 bg-[var(--color-accent)] text-black font-bold rounded-lg hover:opacity-90 transition text-lg">
               Send Message
             </button>
+            <p className="text-sm text-[var(--color-text-muted)] text-center mt-3">Or email us directly at <a href="mailto:info@agilelens.com" className="underline hover:text-[var(--color-text)]">info@agilelens.com</a></p>
           </form>
         </div>
       </div>

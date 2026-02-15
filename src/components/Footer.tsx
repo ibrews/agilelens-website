@@ -34,6 +34,13 @@ export default function Footer() {
             <p>New York, NY 10011</p>
             <p><a href="tel:+12126913020" className="hover:text-[var(--color-text)]">+1 (212) 691 3020</a></p>
             <p><a href="mailto:info@agilelens.com" className="hover:text-[var(--color-text)]">info@agilelens.com</a></p>
+            <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
+              <a href="https://www.linkedin.com/company/agilelens" target="_blank" rel="noopener" className="hover:text-[var(--color-text)]">LinkedIn</a>
+              <a href="https://x.com/agilelens" target="_blank" rel="noopener" className="hover:text-[var(--color-text)]">X</a>
+              <a href="https://www.instagram.com/agilelens/" target="_blank" rel="noopener" className="hover:text-[var(--color-text)]">Instagram</a>
+              <a href="https://www.facebook.com/agilelens/" target="_blank" rel="noopener" className="hover:text-[var(--color-text)]">Facebook</a>
+              <a href="https://www.youtube.com/@iBrews" target="_blank" rel="noopener" className="hover:text-[var(--color-text)]">YouTube</a>
+            </div>
           </div>
           {/* Newsletter */}
           <div className="mt-6">
