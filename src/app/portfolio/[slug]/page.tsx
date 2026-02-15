@@ -6,8 +6,9 @@ export function generateStaticParams() {
   return projects.map(p => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = getProjectBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   return {
     title: project ? `${project.name} | Agile Lens` : 'Project | Agile Lens',
     description: project?.overview || '',
@@ -24,8 +25,9 @@ function extractVimeoId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) {
     return (
       <div className="max-w-4xl mx-auto px-6 py-24 text-center">
@@ -35,7 +37,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
     );
   }
 
-  const { prev, next } = getAdjacentProjects(params.slug);
+  const { prev, next } = getAdjacentProjects(slug);
   const yearDisplay = project.yearStarted && project.yearCompleted
     ? (project.yearStarted === project.yearCompleted ? project.yearStarted : `${project.yearStarted} - ${project.yearCompleted}`)
     : project.yearStarted
