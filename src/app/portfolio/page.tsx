@@ -28,7 +28,7 @@ const projects: Project[] = [
   { name: 'The Shed @ Hudson Yards', year: '2016–2019', client: 'Diller Scofidio + Renfro / Fisher Dachs', desc: 'Custom AR and VR for parametric design options and seat count optimization.', category: 'Architecture', image: '/portfolio/the-shed.png' },
   { name: 'Ghosted', year: '2019', desc: 'AR "dating simulator for ghosts" with volumetrically captured actors across a table.', category: 'Entertainment', awards: 'Most Innovative Immersive Experience (NBFF)', tech: 'Magic Leap, Depthkit, Unreal Engine', image: '/portfolio/ghosted.png' },
   { name: 'Loveseat', year: '2019', client: 'Double Eye Studios / Venice Film Festival', desc: 'Comedy performed simultaneously to virtual and real-world audiences where performers intersect realities.', category: 'Entertainment' },
-  { name: 'Jettison / On Board XR', year: '2020–2021', desc: 'Live theater in open-source, browser-based VR using Mozilla Hubs.', category: 'Entertainment' },
+  { name: 'Jettison / On Board XR', year: '2020–2021', desc: 'Live theater in open-source, browser-based VR using Mozilla Hubs.', category: 'Entertainment', image: '/portfolio/onboard.jpg' },
   { name: 'Frederic Church Ombra Exhibition', year: '2019', client: 'Sage and Coombe Architects', desc: 'iOS AR app for an architectural exhibition at Olana.', category: 'Architecture', tech: 'iOS AR' },
   { name: 'Statue of Liberty Museum', year: '2017', client: 'FXCollaborative', desc: 'Photoreal VR tour of Liberty Island with the new museum, optimized for 90 FPS.', category: 'Architecture', image: '/portfolio/statue-of-liberty.jpg' },
   { name: 'Ed Sullivan Theater', year: '2017', client: 'Bravo Media', desc: 'GearVR/Browser tool to determine optimal projection locations for stained-glass effect.', category: 'Architecture' },
@@ -77,7 +77,7 @@ export default function PortfolioPage() {
           <div key={i} className="group p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/40 transition-all">
             <div className="w-full h-40 rounded-lg bg-gradient-to-br from-[var(--color-accent)]/5 to-[var(--color-accent-2)]/5 border border-[var(--color-border)] mb-4 flex items-center justify-center text-3xl overflow-hidden">
               {p.image ? (
-                <img src={p.image} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+                <img src={`/agilelens-website${p.image}`} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
               ) : (
                 p.category === 'Architecture' ? '🏛️' : p.category === 'Entertainment' ? '🎭' : p.category === 'Marketing' ? '📣' : '🔬'
               )}

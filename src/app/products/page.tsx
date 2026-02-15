@@ -113,7 +113,7 @@ export default function ProductsPage() {
               </div>
               <div className={`aspect-video rounded-2xl bg-gradient-to-br ${p.color} border border-[var(--color-border)] flex items-center justify-center text-6xl overflow-hidden ${i % 2 === 1 ? 'md:order-1' : ''}`}>
                 {p.image ? (
-                  <img src={p.image} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={`/agilelens-website${p.image}`} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
                 ) : (
                   p.icon
                 )}
